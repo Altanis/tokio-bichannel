@@ -88,7 +88,7 @@ impl<S, R> Channel<S, R> {
 /// # Examples
 /// 
 /// ```
-/// use your_crate_name::{channel, Channel};
+/// use tokio_bichannel::{channel, Channel};
 /// 
 /// #[tokio::main]
 /// async fn main() {
