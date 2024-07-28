@@ -1,0 +1,16 @@
+[package]
+name = "tokio-bichannel"
+version = "1.0.0"
+edition = "2021"
+authors = ["Altanis"]
+license = "MIT"
+readme = "README.md"
+description = "Bidirectional tokio::sync::mpsc channel"
+documentation = "https://docs.rs/tokio-bichannel"
+repository = "https://github.com/Altanis/tokio-bichannel"
+
+[dependencies]
+tokio = { version = "1.39.2", features = ["sync"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
