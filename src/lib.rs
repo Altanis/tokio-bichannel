@@ -1,5 +1,5 @@
 use tokio::sync::mpsc::{channel as create_channel, Receiver, Sender};
-use tokio::sync::mpsc::error::{SendError, TryRecvError};
+use tokio::sync::mpsc::error::{SendError, TryRecvError, TrySendError};
 
 /// A bidirectional channel structure that supports sending and receiving messages.
 /// 
@@ -55,6 +55,28 @@ impl<S, R> Channel<S, R> {
     /// ```
     pub async fn recv(&mut self) -> Option<R> {
         self.receiver.recv().await
+    }
+
+    /// Attempts to send a message through the channel without blocking.
+    /// 
+    /// # Arguments
+    /// 
+    /// * `s` - The message to send.
+    /// 
+    /// # Returns
+    /// 
+    /// * `Result<(), SendError<S>>` - Returns `Ok(())` if the message was sent, or an error if the channel is full or closed.
+    /// 
+    /// # Examples
+    /// 
+    /// ```
+    /// match channel.try_send("Hello".to_string()) {
+    ///    Ok(_) => println!("Message sent"),
+    ///    Err(e) => println!("Error: {:?}", e),
+    /// }
+    /// ```
+    pub fn try_send(&self, s: S) -> Result<(), TrySendError<S>> {
+        self.sender.try_send(s)
     }
 
     /// Attempts to receive a message from the channel without blocking.
