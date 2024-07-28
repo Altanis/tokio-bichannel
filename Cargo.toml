@@ -3,6 +3,7 @@ name = "tokio-bichannel"
 version = "1.0.0"
 edition = "2021"
 authors = ["Altanis"]
+keywords = ["async", "channel", "tokio", "mpsc", "bidirectional"]
 license = "MIT"
 readme = "README.md"
 description = "Bidirectional tokio::sync::mpsc channel"
